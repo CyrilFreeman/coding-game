@@ -10,15 +10,19 @@ while (true) {
   const opponentX = parseInt(inputs[0]);
   const opponentY = parseInt(inputs[1]);
 
-  // Write an action using console.log()
-  // To debug: console.error('Debug messages...');
+  let thrust;
 
-  // You have to output the target position
-  // followed by the power (0 <= thrust <= 100)
-  // i.e.: "x y thrust"
-  if (nextCheckpointAngle > 90 || nextCheckpointAngle < -90) {
-    console.log(nextCheckpointX + " " + nextCheckpointY + " 20");
+  if (nextCheckpointDist > 1000) {
+    thrust = "BOOST";
+  } else if (nextCheckpointDist > 500) {
+    thrust = "100";
+  } else if (nextCheckpointDist > 100) {
+    thrust = "90";
+  } else if (nextCheckpointAngle > 90 || nextCheckpointAngle < -90) {
+    thrust = "10";
   } else {
-    console.log(nextCheckpointX + " " + nextCheckpointY + " 100");
+    thrust = "50";
   }
+
+  console.log(`${nextCheckpointX} ${nextCheckpointY} ${thrust}`);
 }
